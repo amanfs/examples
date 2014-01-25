@@ -13,13 +13,17 @@
 		var context = new webkitAudioContext();
 		xhr = new XMLHttpRequest();
 		
-		xhr.open('GET', 'https://dl.dropboxusercontent.com/u/6688287/11%20Fractal%20Ft.%20Tisha.mp3', true);
+		xhr.open('GET', '/audio/files/102513b.mp3', true);
+
 		xhr.responseType = 'arraybuffer';
-		xhr.onload = function () {
+		xhr.onload = function (data) {
 		    /* Processing response data - xhr.response */
+		    console.log(data)
 		};
-		xhr.onerror = function () {
+		xhr.onerror = function (error) {
 		    /* Handling errors */
+		    console.log(error)
+		    
 		};
 		xhr.send();
 		
