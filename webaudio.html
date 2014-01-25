@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Web Audio</title>
+	<access origin="*" subdomains="true"/>
+	
+</head>
+	<body>
+	<script type="text/javascript">
+		var context = new webkitAudioContext();
+		xhr = new XMLHttpRequest();
+		
+		xhr.open('GET', 'https://dl.dropboxusercontent.com/u/6688287/11%20Fractal%20Ft.%20Tisha.mp3', true);
+		xhr.responseType = 'arraybuffer';
+		xhr.onload = function () {
+		    /* Processing response data - xhr.response */
+		};
+		xhr.onerror = function () {
+		    /* Handling errors */
+		};
+		xhr.send();
+		
+		/* Decoding audio data. */
+		var context = new webkitAudioContext();
+		context.decodeAudioData(xhr.response, function onSuccess (buffer) {
+		    if (! buffer) {
+		        alert('Error decoding file data.');
+		        return;
+		    }
+		}, function onError (error) {
+		    alert('Error decoding file data.');
+		});
+		
+		var source = context.createBufferSource(); /* Create SourceNode. */
+		
+		source.buffer = buffer; /* buffer variable is data of AudioBuffer type from the decodeAudioData() function. */
+		
+		source.connect(context.destination); /* Connect SourceNode to DestinationNode. */
+		
+		source.noteOn(0); /* Play sound. */
+		
+		
+	</script>
+	</body>
+</html>
